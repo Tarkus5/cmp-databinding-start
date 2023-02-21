@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, ElementRef, Input, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -11,6 +11,8 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
   @Input('srvElement')
   element: {type: string, name: string, content: string};
 
+  @ViewChild('heading', {static: true}) header: ElementRef;
+
   constructor() {
     console.log('Constructor called')
   }
@@ -22,6 +24,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngOnInit() { //Viene chiamato quando la pagina viene inizializzata
     console.log('ngOnInit called')
+
   }
 
   ngDoCheck() { //Viene triggerato quando viene effettuata una qualsiasi modifica sulla pagina (click di un bottone, scroll, selezione, etc...)
@@ -38,6 +41,7 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, After
 
   ngAfterViewInit() { //Viene chiamato quando viene inizializzata la vista (ma ancora non è stata renderizzata)
     console.log('AfterViewInit called')
+    console.log(this.header.nativeElement.textContent)
   }
 
   ngAfterViewChecked() { //Viene chiamato quando viene renderizzata la vista
